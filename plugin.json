@@ -1,0 +1,7 @@
+{
+  "name": "mdt-force-jump-mdt",
+  "author": "monthzifang",
+  "main": "com.mdt.forcejump.ForceJumpMdtPlugin",
+  "description": "Redirects players on join to another MDT server target using a configurable MDT redirect protocol payload.",
+  "version": "V1.0.0 - 157X"
+}

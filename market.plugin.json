@@ -1,0 +1,22 @@
+{
+  "metadataVersion": 1,
+  "name": "mdt-force-jump-mdt",
+  "displayName": "MDT Force Jump",
+  "displayNameZh": "MDT 入服强跳",
+  "author": "monthzifang",
+  "description": "Sends a configurable MDT redirect payload when a player joins, allowing compatible clients to jump to another server automatically.",
+  "descriptionZh": "玩家加入服务器时发送可配置的 MDT redirect 负载，兼容客户端可据此自动跳转到其他服务器。",
+  "version": "v1",
+  "requiredMarketVersion": "v1",
+  "channel": "native",
+  "targets": [
+    "original"
+  ],
+  "downloadUrls": [
+    "https://raw.githubusercontent.com/MonthZifang/mdt-force-jump-mdt/main/dist/mdt-force-jump-mdt.jar",
+    "https://raw.githubusercontent.com/MonthZifang/mdt-force-jump-mdt/main/plugin.json"
+  ],
+  "dependencies": [],
+  "repositoryUrl": "https://github.com/MonthZifang/mdt-force-jump-mdt",
+  "entry": "com.mdt.forcejump.ForceJumpMdtPlugin"
+}
