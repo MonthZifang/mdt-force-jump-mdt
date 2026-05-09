@@ -4,6 +4,7 @@ import arc.Events;
 import arc.util.CommandHandler;
 import arc.util.Log;
 import java.io.File;
+import java.lang.reflect.Field;
 import mindustry.Vars;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.gen.Call;
@@ -74,6 +75,12 @@ public final class ForceJumpMdtPlugin extends Plugin {
         if (player == null || player.con == null) {
             return;
         }
+        if (isSelfTarget()) {
+            if (config.debug()) {
+                Log.info("Skip redirect for @ because target points to current server: @:@", player.name, config.host(), config.port());
+            }
+            return;
+        }
 
         String uri = config.buildRedirectUri();
         if (config.sendChat()) {
@@ -87,6 +94,35 @@ public final class ForceJumpMdtPlugin extends Plugin {
         }
         if (config.kick()) {
             player.con.kick(config.buildKickMessage(uri), config.kickDuration());
+        }
+    }
+
+    private boolean isSelfTarget() {
+        if (!isLocalTargetHost(config.host())) {
+            return false;
+        }
+        int currentPort = resolveCurrentServerPort();
+        return currentPort > 0 && currentPort == config.port();
+    }
+
+    private static boolean isLocalTargetHost(String host) {
+        if (host == null) {
+            return false;
+        }
+        String normalized = host.trim().toLowerCase();
+        return normalized.equals("127.0.0.1")
+            || normalized.equals("localhost")
+            || normalized.equals("0.0.0.0")
+            || normalized.equals("::1");
+    }
+
+    private static int resolveCurrentServerPort() {
+        try {
+            Field field = Vars.class.getDeclaredField("port");
+            field.setAccessible(true);
+            return field.getInt(null);
+        } catch (Exception ignored) {
+            return -1;
         }
     }
 

@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -161,7 +163,7 @@ public final class ForceJumpConfig {
     }
 
     public String buildRedirectUri() {
-        return String.format(uriTemplate, host, Integer.valueOf(port), targetName);
+        return String.format(uriTemplate, host, Integer.valueOf(port), encodeTargetName(targetName));
     }
 
     public String buildChatMessage(String uri) {
@@ -174,5 +176,13 @@ public final class ForceJumpConfig {
 
     public String buildKickMessage(String uri) {
         return String.format(kickTemplate, uri);
+    }
+
+    private static String encodeTargetName(String value) {
+        try {
+            return URLEncoder.encode(value, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException exception) {
+            throw new IllegalStateException("UTF-8 should always be available.", exception);
+        }
     }
 }
