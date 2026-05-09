@@ -13,10 +13,10 @@
     "original"
   ],
   "downloadUrls": [
-    "https://raw.githubusercontent.com/MonthZifang/mdt-force-jump-mdt/main/dist/mdt-force-jump-mdt.jar",
-    "https://raw.githubusercontent.com/MonthZifang/mdt-force-jump-mdt/main/plugin.json"
+    "https://raw.githubusercontent.com/MonthZifang/-mdt/main/dist/mdt-force-jump-mdt.jar",
+    "https://raw.githubusercontent.com/MonthZifang/-mdt/main/plugin.json"
   ],
   "dependencies": [],
-  "repositoryUrl": "https://github.com/MonthZifang/mdt-force-jump-mdt",
+  "repositoryUrl": "https://github.com/MonthZifang/-mdt",
   "entry": "com.mdt.forcejump.ForceJumpMdtPlugin"
 }
